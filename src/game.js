@@ -10,6 +10,11 @@
 		player = new NS.Player();
 		player.is_under_user_control = true;
 		addChild(player);
+
+		// add level manager
+		
+
+		
 		PAUSE = false;
 		debug = true;
 	}

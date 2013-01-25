@@ -56,11 +56,10 @@
 		}
 
 		// jump
-		if(keys[38]) {
+		if(keys[38] && this.is_on_ground) {
 			this.is_on_ground = false;
-			this.speed_y = -500;
+			this.speed_y = -650;
 		}
-
 
 		if(this.y > H - NS.Globals.ground_height) {
 			this.speed_y = 0;
