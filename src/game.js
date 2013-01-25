@@ -1,12 +1,18 @@
-;(function(game) {
+;(function(NS) {
 
 	// proto code
+	var player = null;
 	
 	function init() {
-		console.log('hes');
+		log('game initialized');
+		NS.Globals.ground_height = Math.floor(H * 0.5);
+
+		player = new NS.Player();
+		player.is_under_user_control = true;
+		addChild(player);
+		PAUSE = false;
+		debug = true;
 	}
-
-
 
 	game.init = init;
 

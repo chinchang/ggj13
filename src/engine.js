@@ -187,6 +187,7 @@ function gameLoop(){
 }
 function onKeyUp(e) {
 	keys[e.which] = false;
+	// log(e.which);
 }
 
 function onKeyDown(e) {

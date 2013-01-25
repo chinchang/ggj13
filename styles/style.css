@@ -1,14 +1,15 @@
 .hidden {
 	display: none;
 }
+
 * {
-	box-sizing: border-box;
+	/*box-sizing: border-box;*/
 }
 
 body {
 	margin: 0;
 	padding: 0;
-	font-family: Aria, sans-serif;
+	/*font-size: 12px;*/
 	background-color: #222;
 	overflow: hidden;
 }
