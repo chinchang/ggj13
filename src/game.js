@@ -3,7 +3,7 @@
 	// proto code
 	var player = null;
 	
-	function init() {
+	NS.init = function () {
 		log('game initialized');
 		NS.Globals.ground_height = Math.floor(H * 0.5);
 
@@ -11,15 +11,21 @@
 		player.is_under_user_control = true;
 		addChild(player);
 
-		// add level manager
-		
+		addChild(new NS.BlackCurtain());
 
+		// add level manager
+		addChild(level_manager);
 		
 		PAUSE = false;
 		debug = true;
-	}
 
-	game.init = init;
+		level_manager.startLevel(1);
+	};
+
+	NS.onLevelComplete = function () {
+
+	};
+
 
 
 })(window.game = window.game || {});

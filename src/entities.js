@@ -53,6 +53,7 @@
 		
 		if(!this.is_on_ground) {
 			this.speed_y += NS.Globals.gravity * dt;
+			this.rotation += 210 * dt;
 		}
 
 		// jump
@@ -64,6 +65,7 @@
 		if(this.y > H - NS.Globals.ground_height) {
 			this.speed_y = 0;
 			this.y = H - NS.Globals.ground_height;
+			this.rotation = 0;
 			this.is_on_ground = true;
 		}
 
@@ -74,12 +76,12 @@
 	};
 
 	/**
-	 * Main player
+	 * Obstacle
 	 */
-	function Obstacle() {
+	function Obstacle(speed_x) {
 		this.type = 'obstacle';
 		this.layer = 3;
-		this.speed_x = 0;
+		this.speed_x = speed_x || 0;
 		this.speed_y = 0;
 		this.width = 30;
 		this.height = 30;
@@ -107,12 +109,47 @@
 
 	Obstacle.prototype.update = function(dt) {
 		this.x += this.speed_x * dt;
-		// this.y += this.speed_y * dt;
-		// this.checkCollision();
 
+		if(this.x < W / 4) {
+			this.alpha -= dt;
+			if(this.alpha < 0) {
+				removeChild(this);
+			}
+		}
+	};
+
+	/**
+	 * Main player
+	 */
+	function BlackCurtain(speed_x) {
+		this.type = 'curtain';
+		this.layer = 6;
+		this.width = W;
+		this.height = H;
+		this.color = '#0f0';
+		this.dir = 1;
+		this.t = 0;
+	}
+
+	BlackCurtain.prototype = new DisplayObject();
+
+	BlackCurtain.prototype.draw = function(context) {
+		context.fillStyle = "#111";
+		context.beginPath();
+		context.rect(0, 0, W, H);
+		context.closePath();
+		context.fill();
+	};
+
+	BlackCurtain.prototype.update = function(dt) {
+		this.t += dt;
+		var new_alpha = Math.cos(Math.sin(this.t * 3) + this.t * 3);
+		// log(new_alpha);
+		this.alpha = new_alpha;
 	};
 
 	NS.Player = Player;
 	NS.Obstacle = Obstacle;
+	NS.BlackCurtain = BlackCurtain;
 
 })(window.game = window.game || {});

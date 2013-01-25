@@ -7,8 +7,8 @@
 		// level 1
 		1: {
 			name: 'Getting started',
-			// asteroid_interval_ms: 3000,
-			speed: 5,
+			obstacle_interval_ms: 1000,
+			speed: -200,
 			duration_sec: 30
 		}
 	};
