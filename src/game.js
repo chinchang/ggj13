@@ -5,7 +5,8 @@
 	
 	NS.init = function () {
 		log('game initialized');
-		NS.Globals.ground_height = Math.floor(H * 0.5);
+		NS.Globals.player_x = ~~(W / 4);
+		NS.Globals.ground_height = ~~(H * 0.5);
 
 		player = new NS.Player();
 		player.is_under_user_control = true;
@@ -23,6 +24,10 @@
 	};
 
 	NS.onLevelComplete = function () {
+
+	};
+
+	NS.fdf = function () {
 
 	};
 

@@ -21,10 +21,31 @@
 		this.color = '#0f0';
 
 		this.reset = function() {
-			this.x = W / 2;
+			this.x = NS.Globals.player_x;
 			this.y = H / 2;
 			this.speed_x = 0;
 			this.speed_y = 0;
+		};
+
+		this.checkCollision = function() {
+			var obstacles = getAllOfType('obstacle');
+			for (var i = obstacles.length; i--;) {
+				var obj = obstacles[i];
+				if(this.hitTestObject(obj)) {
+					// this.reset();
+					removeChild(obj);
+					// NS.updateHealth(-1);
+					// log('hit');
+					$('body')
+						.css('background-color', 'red')
+						.removeClass('hit');
+					setTimeout(function () {
+						$('body')
+							.addClass('hit')
+							.css('background-color', '#222');
+					}, 10);
+				}
+			}
 		};
 
 	
@@ -53,7 +74,7 @@
 		
 		if(!this.is_on_ground) {
 			this.speed_y += NS.Globals.gravity * dt;
-			this.rotation += 210 * dt;
+			this.rotation += 280 * dt;
 		}
 
 		// jump
@@ -71,17 +92,18 @@
 
 		this.x += this.speed_x * dt;
 		this.y += this.speed_y * dt;
-		// this.checkCollision();
-
+		
+		this.checkCollision();
 	};
 
 	/**
 	 * Obstacle
 	 */
-	function Obstacle(speed_x) {
+	function Obstacle(speed_x, time_to_collide) {
 		this.type = 'obstacle';
 		this.layer = 3;
 		this.speed_x = speed_x || 0;
+		this.time_to_collide = time_to_collide;
 		this.speed_y = 0;
 		this.width = 30;
 		this.height = 30;
@@ -98,6 +120,10 @@
 		context.rect(this.hitarea.x, this.hitarea.y, this.hitarea.width, this.hitarea.height);
 		context.closePath();
 		context.fill();
+
+		// context.font = '16px Verdana';
+		// context.fillStyle = '#FFF';
+		// context.fillText(this.time_to_collide + '', -4, 0);
 
 		if(debug) {
 			context.strokeStyle = this.color;
@@ -143,7 +169,7 @@
 
 	BlackCurtain.prototype.update = function(dt) {
 		this.t += dt;
-		var new_alpha = Math.cos(Math.sin(this.t * 3) + this.t * 3);
+		var new_alpha = Math.abs(Math.cos(Math.sin(this.t * 3) + this.t * 3));
 		// log(new_alpha);
 		this.alpha = new_alpha;
 	};

@@ -52,7 +52,8 @@ var level_manager = (function() {
 	};
 
 	function createObstacle() {
-		var obstacle = new game.Obstacle(_current_level_data.speed);
+		var time_to_collide = getRandomFromList([2, 3, 4]);
+		var obstacle = new game.Obstacle(-1 * ~~((W - game.Globals.player_x) / time_to_collide), time_to_collide);
 		obstacle.x = W;
 		obstacle.y = H - game.Globals.ground_height;
 		addChild(obstacle);

@@ -14,6 +14,10 @@ body {
 	overflow: hidden;
 }
 
+body.hit {
+	-webkit-transition: 1s ease;
+}
+
 a {
 	color: #588618;
 	text-decoration: none;

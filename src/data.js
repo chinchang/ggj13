@@ -7,7 +7,7 @@
 		// level 1
 		1: {
 			name: 'Getting started',
-			obstacle_interval_ms: 1000,
+			obstacle_interval_ms: 1500,
 			speed: -200,
 			duration_sec: 30
 		}
