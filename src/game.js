@@ -22,5 +22,5 @@
 
 window.addEventListener('load', function () {
 	// init engine
-	init('c');
+	init('c', undefined, 300);
 });

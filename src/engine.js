@@ -91,10 +91,10 @@ var Stage = function(){
 /**
  * Initializes variables, listeners etc
  */
-function init(canvas_id) {
+function init(canvas_id, width, height) {
 	averagefps = {x: 0, y: 0};
-	W = window.innerWidth;
-	H = window.innerHeight;
+	W = width ? width : window.innerWidth;
+	H = height? height : window.innerHeight;
 	canvas = document.getElementById(canvas_id);
 	canvas.width = W;
 	canvas.height = H;
