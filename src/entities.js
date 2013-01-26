@@ -37,17 +37,17 @@
 					// NS.updateHealth(-1);
 					// log('hit');
 					$('body')
-						.css('background-color', 'red')
+						.css('background-color', 'hsl(0, 50%, 50%)')
 						.removeClass('hit');
 					setTimeout(function () {
 						$('body')
 							.addClass('hit')
-							.css('background-color', '#222');
+							.css('background-color', '#111');
 					}, 10);
+					// level_manager.startLevel();
 				}
 			}
 		};
-
 	
 		this.reset();
 	}
@@ -144,8 +144,52 @@
 		}
 	};
 
+
 	/**
-	 * Main player
+	 * Obstacle
+	 */
+	function Collectible() {
+		this.type = 'collectible';
+		this.layer = 3;
+		this.speed_x = speed_x || 0;
+		this.speed_y = 0;
+		this.width = 30;
+		this.height = 30;
+
+		this.hitarea = new Rectangle(-this.width / 2, -this.height / 2 , this.width, this.height);
+		this.color = '#0f0';
+	}
+
+	Collectible.prototype = new DisplayObject();
+
+	Collectible.prototype.draw = function(context) {
+		context.fillStyle = "#435433";
+		context.beginPath();
+		context.rect(this.hitarea.x, this.hitarea.y, this.hitarea.width, this.hitarea.height);
+		context.closePath();
+		context.fill();
+
+		if(debug) {
+			context.strokeStyle = this.color;
+			context.beginPath();
+			context.rect(this.hitarea.x, this.hitarea.y, this.hitarea.width, this.hitarea.height);
+			context.stroke();
+		}
+	};
+
+	Collectible.prototype.update = function(dt) {
+		this.x += this.speed_x * dt;
+
+		if(this.x < W / 4) {
+			this.alpha -= dt;
+			if(this.alpha < 0) {
+				removeChild(this);
+			}
+		}
+	};
+
+	/**
+	 * Black curtain
 	 */
 	function BlackCurtain(speed_x) {
 		this.type = 'curtain';
@@ -169,7 +213,9 @@
 
 	BlackCurtain.prototype.update = function(dt) {
 		this.t += dt;
-		var new_alpha = Math.abs(Math.cos(Math.sin(this.t * 3) + this.t * 3));
+		var fade_param = level_manager.getCurrentLevelData().fade_param,
+			new_alpha = Math.abs(Math.cos(Math.sin(this.t * fade_param) + this.t * fade_param));
+		// var new_alpha = Math.abs(Math.cos(Math.sin(this.t * 3) + this.t * 3));
 		// log(new_alpha);
 		this.alpha = new_alpha;
 	};

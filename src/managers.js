@@ -21,7 +21,6 @@ var level_manager = (function() {
 		_level_complete_check_timer = 0;
 	};
 
-
 	exports.startLevel = function startLevel(level) {
 		// if the starting level is ahead of the 'last open level', make
 		// it the new 'last open level'
@@ -29,14 +28,14 @@ var level_manager = (function() {
 			_last_open_level = level;
 		}
 
-		_current_level = level;
+		_current_level = level || _current_level;
 		_current_level_data = game.level_data[_current_level];
 		_level_timer = _obstacle_timer = 0;
 
 		_state = 'GENERATING';
 
 		_obstacle_timer = _current_level_data.obstacle_interval_ms / 1000;
-		log('started level ', level);
+		log('started level ', _current_level);
 	};
 
 	exports.getCurrentLevelData = function() {
@@ -52,12 +51,12 @@ var level_manager = (function() {
 	};
 
 	function createObstacle() {
-		var time_to_collide = getRandomFromList([2, 3, 4]);
+		var time_to_collide = getRandomFromList(_current_level_data.available_times_to_collide);
 		var obstacle = new game.Obstacle(-1 * ~~((W - game.Globals.player_x) / time_to_collide), time_to_collide);
 		obstacle.x = W;
 		obstacle.y = H - game.Globals.ground_height;
 		addChild(obstacle);
-		log('obstacle created with speed ', _current_level_data.speed);
+		// log('obstacle created with speed ', _current_level_data.speed);
 	}
 
 	function generateLevel () {
@@ -71,6 +70,7 @@ var level_manager = (function() {
 	exports.update = function update(dt) {
 		if(_state === 'IDLE') return;
 		_level_timer += dt;
+		$('#js-current-score').text(~~(_level_timer * 100) + '');
 		_obstacle_timer += dt;
 		_level_complete_check_timer += dt;
 
@@ -99,7 +99,10 @@ var level_manager = (function() {
 
 	function onLevelComplete() {
 		_state = 'IDLE';
+		log('level ', _current_level, 'complete');
 		game.onLevelComplete();
+
+		level_manager.startLevel(_current_level + 1);
 	}
 
 	return exports;

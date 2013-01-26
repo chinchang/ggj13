@@ -9,8 +9,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	/*font-size: 12px;*/
-	background-color: #222;
+	font-family: Verdana, Arial;
+	background-color: #111;
 	overflow: hidden;
 }
 
@@ -26,4 +26,15 @@ a {
 canvas {
 	background-color: #9CC5C9;
 	margin-top: 200px;
+}
+
+.hud {
+	color: #666;
+	padding: 16px;
+}
+
+.hud--bottom {
+	text-align: right;
+	font-size: 30px;
+	font-weight: bold;
 }

@@ -138,7 +138,7 @@ function init(canvas_id, width, height) {
 		fps: 0,
 		visible: true,
 		update: function(dt){
-			this.fps = Math.round(1/dt); 
+			this.fps = Math.round(1/dt);
 			if(this.fps !== Infinity){
 				averagefps.x = (averagefps.x * averagefps.y + this.fps) / ++averagefps.y; 
 			}
