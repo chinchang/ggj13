@@ -3,7 +3,9 @@
 }
 
 * {
-	/*box-sizing: border-box;*/
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 body {
@@ -62,10 +64,38 @@ canvas {
 .hud {
 	color: #666;
 	padding: 16px;
-}
-
-.hud--bottom {
-	text-align: right;
 	font-size: 30px;
 	font-weight: bold;
+	display: inline-block;
+}
+
+.hud--left {
+	float: left;
+}
+
+.hud--right {
+	float: right;
+}
+
+.hud--life {
+	display: inline-block;
+	overflow: hidden;
+	font-size: 0;
+}
+
+.hud--life__item {
+	list-style: none;
+	display: inline-block;
+	color: indianred;
+	position: relative;
+	font-size: 25px;
+	width: 28px;
+}
+
+.hud--life.l2 .hud--life__item {
+	left: -28px;
+}
+
+.hud--life.l1 .hud--life__item {
+	left: -56px;
 }

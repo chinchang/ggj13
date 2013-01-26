@@ -8,6 +8,13 @@
 		$('.js-play-again-button').click(function () {
 			NS.startGame();
 		});
+
+		// override stage's onClicked method
+		stage.onClicked = function () {
+			if(player.is_on_ground) {
+				player.jump();
+			}
+		};
 	}
 	
 	NS.init = function () {
@@ -34,7 +41,6 @@
 	};
 
 	NS.onLevelComplete = function () {
-
 	};
 
 	NS.stopGame = function (amount) {
@@ -50,13 +56,20 @@
 	NS.startGame = function (amount) {
 		$('body').removeClass('gameover');
 		level_manager.startLevel(1);
+		health = 3;
+		$('.hud--life').removeClass('l1 l2');
 	};
 
 	NS.updateHealth = function (amount) {
 		health += amount;
+		
 		document.getElementById("audHit").src = 'Hit_Hurt.wav';
 		document.getElementById("audHit").volume = 1;
 		document.getElementById("audHit").play();
+		$('.hud--life')
+			.removeClass('l1')
+			.removeClass('l2')
+			.addClass('l' + health);
 		if(!health) {
 			this.stopGame();
 		}

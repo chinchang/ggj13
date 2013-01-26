@@ -47,6 +47,11 @@
 				}
 			}
 		};
+
+		this.jump = function () {
+			this.is_on_ground = false;
+			this.speed_y = -650;
+		};
 	
 		this.reset();
 	}
@@ -78,8 +83,7 @@
 
 		// jump
 		if(keys[38] && this.is_on_ground) {
-			this.is_on_ground = false;
-			this.speed_y = -650;
+			this.jump();
 		}
 
 		if(this.y > H - NS.Globals.ground_height) {
@@ -215,6 +219,7 @@
 		this.width = W;
 		this.height = H;
 		this.color = '#0f0';
+		this.alpha = 0;
 		this.dir = 1;
 		this.t = 0;
 	}
@@ -231,10 +236,14 @@
 
 	BlackCurtain.prototype.update = function(dt) {
 		this.t += dt;
-		var fade_param = level_manager.getCurrentLevelData().fade_param,
-			new_alpha = Math.abs(Math.cos(Math.sin(this.t * fade_param) + this.t * fade_param));
-		// var new_alpha = Math.abs(Math.cos(Math.sin(this.t * 3) + this.t * 3));
-		this.alpha = new_alpha;
+		var fade_param = level_manager.getCurrentLevelData().fade_param;
+		if(fade_param) {
+			var new_alpha = Math.abs(Math.cos(Math.sin(this.t * fade_param) + this.t * fade_param));
+			this.alpha = new_alpha;
+		}
+		else {
+			this.alpha = 0;
+		}
 	};
 
 	/**
