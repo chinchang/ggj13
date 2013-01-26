@@ -54,6 +54,9 @@
 
 	NS.updateHealth = function (amount) {
 		health += amount;
+		document.getElementById("audHit").src = 'Hit_Hurt.wav';
+		document.getElementById("audHit").volume = 1;
+		document.getElementById("audHit").play();
 		if(!health) {
 			this.stopGame();
 		}
