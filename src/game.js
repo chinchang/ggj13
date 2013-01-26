@@ -1,7 +1,8 @@
 ;(function(NS) {
 
 	// proto code
-	var player = null;
+	var player = null,
+		health = 1;
 	
 	NS.init = function () {
 		log('game initialized');
@@ -13,6 +14,8 @@
 		addChild(player);
 
 		addChild(new NS.BlackCurtain());
+		// 
+		// addChild(emitter);
 
 		// add level manager
 		addChild(level_manager);
@@ -27,10 +30,28 @@
 
 	};
 
-	NS.fdf = function () {
-
+	NS.updateHealth = function (amount) {
+		health += amount;
+		if(!health) {
+			level_manager.reset();
+			// remove bullets, asteroids and bonus items
+			var entities = getAllOfType('obstacle');
+			for (var i = entities.length - 1; i >= 0; i--) {
+				removeChild(entities[i]);
+			};
+		}
+		
 	};
 
+	NS.createExplosion = function (x, y, level) {
+		var num_particles = 15 + (level > 2 ? level * 8 : 0),
+			particle = null;
+		while (num_particles--) {
+			particle = new NS.ExplosionParticle(x, y, level);
+			addChild(particle);
+		}
+		particle = null;
+	}
 
 
 })(window.game = window.game || {});

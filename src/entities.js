@@ -88,6 +88,17 @@
 			this.y = H - NS.Globals.ground_height;
 			this.rotation = 0;
 			this.is_on_ground = true;
+			NS.createExplosion(this.x, this.y, 1);
+
+			// make all obstacles jump proportional to distance from player
+			var obstacles = getAllOfType('obstacle');
+			for (var i = obstacles.length; i--;) {
+				var obj = obstacles[i];
+				var distance = Math.abs(obj.x - this.x);
+				distance < W / 3 ? distance = W / 3 : 0;
+				obj.speed_y =  W / distance * -200;
+				obj.is_on_ground = false;
+			}
 		}
 
 		this.x += this.speed_x * dt;
@@ -107,6 +118,7 @@
 		this.speed_y = 0;
 		this.width = 30;
 		this.height = 30;
+		this.is_on_ground = true;
 
 		this.hitarea = new Rectangle(-this.width / 2, -this.height / 2 , this.width, this.height);
 		this.color = '#0f0';
@@ -121,10 +133,6 @@
 		context.closePath();
 		context.fill();
 
-		// context.font = '16px Verdana';
-		// context.fillStyle = '#FFF';
-		// context.fillText(this.time_to_collide + '', -4, 0);
-
 		if(debug) {
 			context.strokeStyle = this.color;
 			context.beginPath();
@@ -134,14 +142,25 @@
 	};
 
 	Obstacle.prototype.update = function(dt) {
-		this.x += this.speed_x * dt;
+		if(!this.is_on_ground) {
+			this.speed_y += NS.Globals.gravity * dt;
+		}
 
+		if(this.y > H - NS.Globals.ground_height) {
+			this.speed_y = 0;
+			this.y = H - NS.Globals.ground_height;
+			this.is_on_ground = true;
+		}
+		
 		if(this.x < W / 4) {
 			this.alpha -= dt;
 			if(this.alpha < 0) {
 				removeChild(this);
 			}
 		}
+
+		this.x += this.speed_x * dt;
+		this.y += this.speed_y * dt;
 	};
 
 
@@ -216,12 +235,54 @@
 		var fade_param = level_manager.getCurrentLevelData().fade_param,
 			new_alpha = Math.abs(Math.cos(Math.sin(this.t * fade_param) + this.t * fade_param));
 		// var new_alpha = Math.abs(Math.cos(Math.sin(this.t * 3) + this.t * 3));
-		// log(new_alpha);
 		this.alpha = new_alpha;
+	};
+
+	/**
+	 * [ExplosionParticle description]
+	 * @param {[type]} x     [description]
+	 * @param {[type]} y     [description]
+	 * @param {[type]} level [description]
+	 */
+	function ExplosionParticle(x, y, level) {
+		this.type = 'explosion-particle';
+		this.x = x;
+		this.y = y;
+		this.level = level;
+		this.color = '#D5544F';
+		this.init({x: x, y: y, level: level});
+	}
+	ExplosionParticle.prototype = new DisplayObject();
+	ExplosionParticle.prototype.init = function(params) {
+		this.x = params.x;
+		this.y = params.y;
+		this.alpha = 1;
+		var theta = Math.random() * 360;
+		this.speed = ~~(this.level * 50 + Math.random() * this.level * 70);
+		this.speed_x = ~~(Math.cos(theta * pi_by_180) * this.speed);
+		this.speed_y = ~~(Math.sin(theta * pi_by_180) * this.speed * 0.4);
+		this.scale_x = this.scale_y = 1;
+	};
+
+	ExplosionParticle.prototype.draw = function(context) {
+		context.fillStyle = this.color;
+		context.fillRect(-1, -1, 15, 15);
+	};
+
+	ExplosionParticle.prototype.update = function(dt) {
+		this.scale_x -= 2 * dt;
+		this.scale_y -= 2 * dt;
+		this.x += this.speed_x * dt;
+		this.y += this.speed_y * dt;
+		this.alpha -= 2 * dt;
+		if(this.alpha <= 0) {
+			removeChild(this);
+		}
 	};
 
 	NS.Player = Player;
 	NS.Obstacle = Obstacle;
 	NS.BlackCurtain = BlackCurtain;
+	NS.ExplosionParticle = ExplosionParticle;
 
 })(window.game = window.game || {});
