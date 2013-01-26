@@ -68,7 +68,7 @@
 		NS.saveScore();
 		level_manager.reset();
 		// remove bullets, asteroids and bonus items
-		var entities = getAllOfType('obstacle');
+		var entities = getAllOfType('obstacle collectible');
 		for (var i = entities.length - 1; i >= 0; i--) {
 			removeChild(entities[i]);
 		}
