@@ -170,7 +170,7 @@
 		var fade_param = level_manager.getCurrentLevelData().fade_param;
 		if(fade_param) {
 			var new_alpha = Math.abs(Math.cos(Math.sin(this.t * fade_param) + this.t * fade_param));
-			this.alpha = new_alpha;
+			this.alpha = 1 - new_alpha;
 		}
 		else {
 			this.alpha = 1;

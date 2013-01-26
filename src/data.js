@@ -16,63 +16,98 @@
 			obstacle_interval_ms: 1500,
 			duration_sec: 10,
 			available_times_to_collide: [4],
-			fade_param: 3
+			fade_param: 7
 		},
 		3: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 10,
 			available_times_to_collide: [4],
-			fade_param: 3
+			fade_param: 6.5
 		},
 		4: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 15,
 			available_times_to_collide: [3, 4],
-			fade_param: 2.5
+			fade_param: 6.5
 		},
 		5: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 20,
 			available_times_to_collide: [3, 4],
-			fade_param: 2
+			fade_param: 6
 		},
 		6: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 30,
 			available_times_to_collide: [4],
-			fade_param: 2
+			fade_param: 5.5
 		},
 		7: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 30,
 			available_times_to_collide: [4],
-			fade_param: 1.5
+			fade_param: 5
 		},
 		8: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 30,
+			duration_sec: 20,
 			available_times_to_collide: [3, 4],
-			fade_param: 1.5
+			fade_param: 4.5
 		},
 		9: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 30,
 			available_times_to_collide: [2, 3, 4],
-			fade_param: 1
+			fade_param: 4.5
 		},
 		10: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 50,
 			available_times_to_collide: [3, 4],
-			fade_param: 0.6
+			fade_param: 4
+		},
+		11: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 50,
+			available_times_to_collide: [2, 3, 4],
+			fade_param: 4
+		},
+		12: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 50,
+			available_times_to_collide: [2, 3, 4],
+			fade_param: 3.5
+		},
+		13: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 60,
+			available_times_to_collide: [2, 3, 4],
+			fade_param: 3
+		},
+		14: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 80,
+			available_times_to_collide: [2, 3, 4],
+			fade_param: 2
+		},
+		15: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 50,
+			available_times_to_collide: [2, 3, 4],
+			fade_param: 1.5
 		}
 	};
 
