@@ -22,7 +22,7 @@ body {
 	text-align: center;
 }
 
-h1 {
+h1, h2, h3, h4 {
 	margin-bottom: 20px;
 }
 
@@ -48,6 +48,12 @@ button:hover {
 	color: white;
 }
 
+.title {
+	font-size: 80px;
+	color: #D5544F;
+	text-shadow: 0 1px 0 hsl(2, 61%, 45%), 0 2px 0 hsl(2, 61%, 45%), 0 4px 0 hsl(2, 61%, 45%), 0 5px 0 hsl(2, 61%, 45%)
+}
+
 canvas {
 	background-color: #9CC5C9;
 }
@@ -65,7 +71,7 @@ canvas {
 }
 
 .screen.game {
-	margin-top: 100px;
+	margin-top: 20px;
 	-webkit-transition: 0.5 ease;
 }
 

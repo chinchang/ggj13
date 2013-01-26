@@ -4,7 +4,8 @@
 	var player = null,
 		health = 3,
 		score = 0,
-		highscore = 0;
+		highscore = 0,
+		collectibles = 0;
 
 	function initListeners () {
 		$('.js-play-again-button').click(function () {
@@ -37,15 +38,34 @@
 		addChild(level_manager);
 		
 		PAUSE = false;
-		// debug = true;
+
+		// get saved data and populated stats
+		var data = NS.SaveManager.getData();
+		collectibles = data.collectibles;
+		highscore = data.highscore;
+		$('.js-highscore').html(highscore);
+		$('.js-collectibles').html(collectibles);
 
 		level_manager.startLevel(1);
 	};
 
 	NS.onLevelComplete = function () {
+		score = level_manager.getScore();
+		if(score > highscore) {
+			highscore = score;
+			$('.js-highscore').text(highscore + '');
+		}
+		NS.saveScore();
 	};
 
 	NS.stopGame = function (amount) {
+		score = level_manager.getScore();
+		if(score > highscore) {
+			highscore = score;
+			$('.js-highscore').text(highscore + '');
+		}
+
+		NS.saveScore();
 		level_manager.reset();
 		// remove bullets, asteroids and bonus items
 		var entities = getAllOfType('obstacle');
@@ -59,6 +79,7 @@
 		$('body').removeClass('gameover');
 		level_manager.startLevel(1);
 		health = 3;
+		score = 0;
 		$('.hud--life').removeClass('l1 l2');
 	};
 
@@ -78,12 +99,8 @@
 	};
 
 	NS.takeCollectible = function () {
-		score += 100;
-		$('.js-score').text(score + '');
-		if(score > highscore) {
-			highscore = score;
-			$('.js-highscore').text(highscore + '');
-		}
+		collectibles++;
+		$('.js-collectibles').text(collectibles + '');
 	};
 	
 	NS.createExplosion = function (x, y, level, color) {
@@ -95,6 +112,27 @@
 		}
 		particle = null;
 	};
+
+
+	NS.saveScore = function () {
+		var data = NS.SaveManager.getData();
+		data.collectibles = collectibles;
+
+		// save global highscore
+		if(score > data.highscore) {
+			data.highscore = score;
+		}
+
+		// // save level highscore
+		// if(!data.level_stats[current_level]) {
+		// 	data.level_stats[current_level] = $.extend({}, NS.dummy_save_data.level_stats['1']);
+		// }
+		// if(level_score > data.level_stats[current_level].highscore) {
+		// 	data.level_stats[current_level].highscore = level_score;
+		// }
+		NS.SaveManager.saveData(data);
+	};
+
 
 })(window.game = window.game || {});
 

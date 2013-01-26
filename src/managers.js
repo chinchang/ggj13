@@ -52,6 +52,10 @@ var level_manager = (function() {
 		_last_open_level = level;
 	};
 
+	exports.getScore = function () {
+		return ~~(_global_timer * 100);
+	};
+
 	function createObstacle() {
 		var time_to_collide = getRandomFromList(_current_level_data.available_times_to_collide);
 		var obstacle = new game.Obstacle(-1 * ~~((W - game.Globals.player_x) / time_to_collide), time_to_collide);
@@ -80,7 +84,9 @@ var level_manager = (function() {
 		if(_state === 'IDLE') return;
 		_level_timer += dt;
 		_global_timer += dt;
-		$('#js-current-time').text(~~(_global_timer * 100) + '');
+
+		$('#js-score').text(~~(_global_timer * 100) + '');
+		
 		_obstacle_timer += dt;
 		_level_complete_check_timer += dt;
 
@@ -104,7 +110,7 @@ var level_manager = (function() {
 				_obstacle_timer = 0;
 				createObstacle();
 			}
-			else if(Math.random() > 0.99) {
+			else if(Math.random() > 0.97) {
 				createCollectible();
 			}
 		}
@@ -151,4 +157,4 @@ var level_manager = (function() {
 		}
 	};
 
-});
+})(window.game = window.game || {});

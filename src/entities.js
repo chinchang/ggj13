@@ -187,7 +187,7 @@
 			// NS.createExplosion(this.x, this.y, 1, '#333');
 		}
 		
-		if(this.x < W / 4) {
+		if(this.x < W / 8) {
 			// this.alpha -= dt;
 			// if(this.alpha < 0) {
 				removeChild(this);

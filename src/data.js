@@ -76,6 +76,20 @@
 		}
 	};
 
+	/**
+	 * Data schema for save
+	 */
+	NS.dummy_save_data = {
+		highscore: 0,
+		collectibles: 0,
+		last_open_level: 1,
+		level_stats: {
+			1: {
+				highscore: 0
+			}
+		}
+	};
+
 	NS.level_data = level_data;
 
 })(window.game = window.game || {});
