@@ -2,7 +2,9 @@
 
 	// proto code
 	var player = null,
-		health = 3;
+		health = 3,
+		score = 0,
+		highscore = 0;
 
 	function initListeners () {
 		$('.js-play-again-button').click(function () {
@@ -75,11 +77,20 @@
 		}
 	};
 
-	NS.createExplosion = function (x, y, level) {
+	NS.takeCollectible = function () {
+		score += 100;
+		$('.js-score').text(score + '');
+		if(score > highscore) {
+			highscore = score;
+			$('.js-highscore').text(highscore + '');
+		}
+	};
+	
+	NS.createExplosion = function (x, y, level, color) {
 		var num_particles = 15 + (level > 2 ? level * 8 : 0),
 			particle = null;
 		while (num_particles--) {
-			particle = new NS.ExplosionParticle(x, y, level);
+			particle = new NS.ExplosionParticle(x, y, level, color);
 			addChild(particle);
 		}
 		particle = null;

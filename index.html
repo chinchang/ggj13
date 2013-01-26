@@ -15,11 +15,19 @@ GAME SCREEN
 </div>
 
 <div class="screen game">
-	<div class="hud  hud--right">
+	<div class="hud  hud--left">
+		<img src="images/trophy.png" alt="">
 		<span class="js-highscore">0</span>
 	</div>
+	<div class="hud  hud--right">
+		<span class="js-score">0</span>
+		<img src="images/coins.png" alt="">
+	</div>
 
-	<canvas id="c"></canvas>
+	<div class="canvas-container">
+		<div class="player"><div class="player__mouth"></div></div>
+		<canvas id="c"></canvas>
+	</div>
 
 	<div class="hud  hud--left">
 		<ul class="hud--life">
@@ -30,10 +38,14 @@ GAME SCREEN
 	</div>
 
 	<div class="hud  hud--right">
-		<div id="js-current-score">0</div>
+		<span id="js-current-time">0</span>
+		<img src="images/clock.png" alt="">
 	</div>
 
 </div>
+
+<audio src="Hit_Hurt.wav" id="audHit"></audio>
+<audio src="GGJ13_Theme.wav" id="audHeart" loop></audio>
 
 
 <script type="text/javascript" src="vendor/jquery.js"></script>
@@ -43,8 +55,6 @@ GAME SCREEN
 <script type="text/javascript" src="src/managers.js"></script>
 <script type="text/javascript" src="src/entities.js"></script>
 <script type="text/javascript" src="src/game.js"></script>
-<audio src="Hit_Hurt.wav" id="audHit"></audio>
-<audio src="GGJ13_Theme.wav" id="audHeart" loop autoplay></audio>
 
 </body>
 

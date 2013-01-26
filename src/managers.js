@@ -61,6 +61,13 @@ var level_manager = (function() {
 		// log('obstacle created with speed ', _current_level_data.speed);
 	}
 
+	function createCollectible() {
+		var collectible = new game.Collectible(-100);
+		collectible.x = W + 10;
+		collectible.y = ~~(Math.random() * H * 0.4 + 25) ;
+		addChild(collectible);
+	}
+
 	function generateLevel () {
 		_current_level_data.xx = [];
 	}
@@ -73,7 +80,7 @@ var level_manager = (function() {
 		if(_state === 'IDLE') return;
 		_level_timer += dt;
 		_global_timer += dt;
-		$('#js-current-score').text(~~(_global_timer * 100) + '');
+		$('#js-current-time').text(~~(_global_timer * 100) + '');
 		_obstacle_timer += dt;
 		_level_complete_check_timer += dt;
 
@@ -97,6 +104,9 @@ var level_manager = (function() {
 				_obstacle_timer = 0;
 				createObstacle();
 			}
+			else if(Math.random() > 0.99) {
+				createCollectible();
+			}
 		}
 	};
 
@@ -112,3 +122,33 @@ var level_manager = (function() {
 
 })();
 
+
+
+
+/**
+ * SaveManager
+ */
+(function(NS) {
+
+	NS.SaveManager = {};
+	
+	var _localstorage_key = 'bs_ggj13';
+
+	NS.SaveManager = {
+		getData: function() {
+			var data = window.localStorage.getItem(_localstorage_key);
+			if(data) {
+				return JSON.parse(data);
+			}
+			else {
+				this.saveData(NS.dummy_save_data);
+				return NS.dummy_save_data;
+			}
+		},
+
+		saveData: function(data) {
+			window.localStorage.setItem(_localstorage_key, JSON.stringify(data));
+		}
+	};
+
+});

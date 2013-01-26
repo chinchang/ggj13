@@ -28,35 +28,35 @@
 		4: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 10,
+			duration_sec: 15,
 			available_times_to_collide: [3, 4],
 			fade_param: 4.8
 		},
 		5: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 10,
+			duration_sec: 20,
 			available_times_to_collide: [3, 4],
 			fade_param: 3.4
 		},
 		6: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 10,
+			duration_sec: 30,
 			available_times_to_collide: [2, 3, 4],
 			fade_param: 3.2
 		},
 		7: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 10,
+			duration_sec: 30,
 			available_times_to_collide: [2, 3, 4],
 			fade_param: 3
 		},
 		8: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 10,
+			duration_sec: 50,
 			available_times_to_collide: [2, 3, 4],
 			fade_param: 2.8
 		}

@@ -28,22 +28,39 @@
 		};
 
 		this.checkCollision = function() {
-			var obstacles = getAllOfType('obstacle');
+			var obstacles = getAllOfType('obstacle collectible');
 			for (var i = obstacles.length; i--;) {
 				var obj = obstacles[i];
 				if(this.hitTestObject(obj)) {
-					// this.reset();
-					removeChild(obj);
-					NS.updateHealth(-1);
-					$('body')
-						.css('background-color', 'hsl(0, 50%, 50%)')
-						.removeClass('hit');
-					setTimeout(function () {
+					if(obj.type === 'obstacle') {
+						NS.updateHealth(-1);
 						$('body')
-							.addClass('hit')
-							.css('background-color', '#111');
-					}, 10);
-					// level_manager.startLevel();
+							.css('background-color', 'hsl(0, 50%, 50%)')
+							.removeClass('hit');
+						setTimeout(function () {
+							$('body')
+								.addClass('hit')
+								.css('background-color', '#111');
+						}, 10);
+
+						$('.player').css({
+							'top': this.y + 'px'
+						});
+						PAUSE = true;
+						setTimeout(function () {
+							$('.player').css({
+								'top': '9999px'
+							});
+							PAUSE = false;
+						}, 500);
+
+
+					}
+					else if(obj.type === 'collectible') {
+						NS.takeCollectible();
+						NS.createExplosion(obj.x, obj.y, 3, '#0087F5');
+					}
+					removeChild(obj);
 				}
 			}
 		};
@@ -91,7 +108,7 @@
 			this.y = H - NS.Globals.ground_height;
 			this.rotation = 0;
 			this.is_on_ground = true;
-			NS.createExplosion(this.x, this.y, 1);
+			NS.createExplosion(this.x, this.y, 1, '#D5544F');
 
 			// make all obstacles jump proportional to distance from player
 			var obstacles = getAllOfType('obstacle');
@@ -153,6 +170,7 @@
 			this.speed_y = 0;
 			this.y = H - NS.Globals.ground_height;
 			this.is_on_ground = true;
+			// NS.createExplosion(this.x, this.y, 1, '#333');
 		}
 		
 		if(this.x < W / 4) {
@@ -170,13 +188,13 @@
 	/**
 	 * Obstacle
 	 */
-	function Collectible() {
+	function Collectible(speed_x) {
 		this.type = 'collectible';
-		this.layer = 3;
+		this.layer = 2;
 		this.speed_x = speed_x || 0;
 		this.speed_y = 0;
-		this.width = 30;
-		this.height = 30;
+		this.width = 15;
+		this.height = 15;
 
 		this.hitarea = new Rectangle(-this.width / 2, -this.height / 2 , this.width, this.height);
 		this.color = '#0f0';
@@ -185,9 +203,12 @@
 	Collectible.prototype = new DisplayObject();
 
 	Collectible.prototype.draw = function(context) {
-		context.fillStyle = "#435433";
+		context.fillStyle = "#0087F5";
 		context.beginPath();
-		context.rect(this.hitarea.x, this.hitarea.y, this.hitarea.width, this.hitarea.height);
+		context.moveTo(-this.width / 2, 0);
+		context.lineTo(0, this.height / 2);
+		context.lineTo(this.width / 2, 0);
+		context.lineTo(0, -this.height / 2);
 		context.closePath();
 		context.fill();
 
@@ -252,12 +273,12 @@
 	 * @param {[type]} y     [description]
 	 * @param {[type]} level [description]
 	 */
-	function ExplosionParticle(x, y, level) {
+	function ExplosionParticle(x, y, level, color) {
 		this.type = 'explosion-particle';
 		this.x = x;
 		this.y = y;
 		this.level = level;
-		this.color = '#D5544F';
+		this.color = color || '#FFF';
 		this.init({x: x, y: y, level: level});
 	}
 	ExplosionParticle.prototype = new DisplayObject();
@@ -290,6 +311,7 @@
 
 	NS.Player = Player;
 	NS.Obstacle = Obstacle;
+	NS.Collectible = Collectible;
 	NS.BlackCurtain = BlackCurtain;
 	NS.ExplosionParticle = ExplosionParticle;
 
