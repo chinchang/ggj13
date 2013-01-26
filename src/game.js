@@ -2,10 +2,17 @@
 
 	// proto code
 	var player = null,
-		health = 1;
+		health = 3;
+
+	function initListeners () {
+		$('.js-play-again-button').click(function () {
+			NS.startGame();
+		});
+	}
 	
 	NS.init = function () {
 		log('game initialized');
+		initListeners();
 		NS.Globals.player_x = ~~(W / 4);
 		NS.Globals.ground_height = ~~(H * 0.5);
 
@@ -30,17 +37,26 @@
 
 	};
 
+	NS.stopGame = function (amount) {
+		level_manager.reset();
+		// remove bullets, asteroids and bonus items
+		var entities = getAllOfType('obstacle');
+		for (var i = entities.length - 1; i >= 0; i--) {
+			removeChild(entities[i]);
+		}
+		$('body').addClass('gameover');
+	};
+
+	NS.startGame = function (amount) {
+		$('body').removeClass('gameover');
+		level_manager.startLevel(1);
+	};
+
 	NS.updateHealth = function (amount) {
 		health += amount;
 		if(!health) {
-			level_manager.reset();
-			// remove bullets, asteroids and bonus items
-			var entities = getAllOfType('obstacle');
-			for (var i = entities.length - 1; i >= 0; i--) {
-				removeChild(entities[i]);
-			};
+			this.stopGame();
 		}
-		
 	};
 
 	NS.createExplosion = function (x, y, level) {

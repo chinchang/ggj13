@@ -12,6 +12,7 @@ body {
 	font-family: Verdana, Arial;
 	background-color: #111;
 	overflow: hidden;
+	text-align: center;
 }
 
 body.hit {
@@ -25,7 +26,24 @@ a {
 
 canvas {
 	background-color: #9CC5C9;
-	margin-top: 200px;
+	/*margin-top: 200px;*/
+}
+
+.play-again-button {
+	display: none;
+}
+
+.gameover .play-again-button {
+	display: inline-block;
+}
+
+.screen.game {
+	-webkit-transition: 0.3 ease;
+}
+
+.gameover .screen.game {
+	-webkit-transform: translateY(50px);
+	opacity: 0;
 }
 
 .hud {

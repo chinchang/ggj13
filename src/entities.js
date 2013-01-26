@@ -34,8 +34,7 @@
 				if(this.hitTestObject(obj)) {
 					// this.reset();
 					removeChild(obj);
-					// NS.updateHealth(-1);
-					// log('hit');
+					NS.updateHealth(-1);
 					$('body')
 						.css('background-color', 'hsl(0, 50%, 50%)')
 						.removeClass('hit');
