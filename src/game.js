@@ -21,7 +21,7 @@
 		addChild(player);
 
 		addChild(new NS.BlackCurtain());
-		// 
+		
 		// addChild(emitter);
 
 		// add level manager
@@ -67,8 +67,7 @@
 			addChild(particle);
 		}
 		particle = null;
-	}
-
+	};
 
 })(window.game = window.game || {});
 

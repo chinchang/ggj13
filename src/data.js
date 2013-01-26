@@ -7,16 +7,16 @@
 		1: {
 			name: 'Getting started',
 			obstacle_interval_ms: 2500,
-			duration_sec: 10,
+			duration_sec: 15,
 			available_times_to_collide: [4],
-			fade_param: 6
+			fade_param: 10
 		},
 		2: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 10,
 			available_times_to_collide: [3, 4],
-			fade_param: 3.8
+			fade_param: 4
 		},
 		3: {
 			name: 'Getting started',

@@ -6,6 +6,7 @@ var level_manager = (function() {
 	var exports = {};
 	var _obstacle_timer = 0,
 		_level_timer = 0,
+		_global_timer = 0,
 		_level_complete_check_timer = 0,
 		_level_check_interval_sec = 1,
 		_current_level = 0,
@@ -19,6 +20,7 @@ var level_manager = (function() {
 		_obstacle_timer = 0;
 		_level_timer = 0;
 		_level_complete_check_timer = 0;
+		_global_timer = 0;
 	};
 
 	exports.startLevel = function startLevel(level) {
@@ -70,7 +72,8 @@ var level_manager = (function() {
 	exports.update = function update(dt) {
 		if(_state === 'IDLE') return;
 		_level_timer += dt;
-		$('#js-current-score').text(~~(_level_timer * 100) + '');
+		_global_timer += dt;
+		$('#js-current-score').text(~~(_global_timer * 100) + '');
 		_obstacle_timer += dt;
 		_level_complete_check_timer += dt;
 

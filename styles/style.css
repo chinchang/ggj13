@@ -24,9 +24,21 @@ a {
 	text-decoration: none;
 }
 
+button {
+	background: #F4F4F4;
+	border: none;
+	color: #444;
+	padding: 10px 20px;
+	-webkit-transition: 0.25s ease;
+}
+
+button:hover {
+	background: #AAA;
+	color: white;
+}
+
 canvas {
 	background-color: #9CC5C9;
-	/*margin-top: 200px;*/
 }
 
 .play-again-button {
@@ -38,6 +50,7 @@ canvas {
 }
 
 .screen.game {
+	margin-top: 100px;
 	-webkit-transition: 0.3 ease;
 }
 
