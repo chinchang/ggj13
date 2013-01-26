@@ -2,6 +2,10 @@
 	display: none;
 }
 
+.clear {
+	clear: both;
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -13,8 +17,13 @@ body {
 	padding: 0;
 	font-family: Verdana, Arial;
 	background-color: #111;
+	color: #777;
 	overflow: hidden;
 	text-align: center;
+}
+
+h1 {
+	margin-bottom: 20px;
 }
 
 body.hit {
@@ -47,11 +56,11 @@ canvas {
 	position: relative;
 }
 
-.play-again-button {
+.gameover-msg {
 	display: none;
 }
 
-.gameover .play-again-button {
+.gameover .gameover-msg {
 	display: inline-block;
 }
 
@@ -145,4 +154,25 @@ canvas {
 	left: 50%;
 	margin-left: -30px;
 	position: absolute;
+}
+
+.callout {
+	display: inline-block;
+	padding: 20px;
+	position: absolute;
+	background: white;
+	border-radius: 8px;
+	color: #333;
+	left: 30%;
+	top: 9999px;
+}
+
+.callout:after {
+	content: '';
+	position: absolute;
+	bottom: 20px;
+	right: 100%;
+	display: block;
+	border: 10px solid transparent;
+	border-right-color: white;
 }

@@ -16,49 +16,63 @@
 			obstacle_interval_ms: 1500,
 			duration_sec: 10,
 			available_times_to_collide: [4],
-			fade_param: 6
+			fade_param: 3
 		},
 		3: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 10,
 			available_times_to_collide: [4],
-			fade_param: 5
+			fade_param: 3
 		},
 		4: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 15,
 			available_times_to_collide: [3, 4],
-			fade_param: 4.8
+			fade_param: 2.7
 		},
 		5: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 20,
 			available_times_to_collide: [3, 4],
-			fade_param: 3.4
+			fade_param: 2.5
 		},
 		6: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 30,
-			available_times_to_collide: [2, 3, 4],
-			fade_param: 3.2
+			available_times_to_collide: [4],
+			fade_param: 2
 		},
 		7: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 30,
-			available_times_to_collide: [2, 3, 4],
-			fade_param: 3
+			available_times_to_collide: [4],
+			fade_param: 1.7
 		},
 		8: {
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
-			duration_sec: 50,
+			duration_sec: 30,
+			available_times_to_collide: [3, 4],
+			fade_param: 1.7
+		},
+		9: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 30,
 			available_times_to_collide: [2, 3, 4],
-			fade_param: 2.8
+			fade_param: 1.7
+		},
+		10: {
+			name: 'Getting started',
+			obstacle_interval_ms: 1500,
+			duration_sec: 50,
+			available_times_to_collide: [3, 4],
+			fade_param: 1.5
 		}
 	};
 

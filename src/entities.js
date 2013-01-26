@@ -46,13 +46,16 @@
 						$('.player').css({
 							'top': this.y + 'px'
 						});
+						$('.callout').css({
+							'top': this.y + 'px'
+						}).text(getRandomFromList(['Holy cow!', 'Ouccch!!!', 'Uhh! This hurts.']));
 						PAUSE = true;
 						setTimeout(function () {
-							$('.player').css({
+							$('.player, .callout').css({
 								'top': '9999px'
 							});
 							PAUSE = false;
-						}, 500);
+						}, 800);
 
 
 					}
@@ -142,6 +145,7 @@
 
 		this.hitarea = new Rectangle(-this.width / 2, -this.height / 2 , this.width, this.height);
 		this.color = '#0f0';
+		this.t = 0;
 	}
 
 	Obstacle.prototype = new DisplayObject();
@@ -162,6 +166,16 @@
 	};
 
 	Obstacle.prototype.update = function(dt) {
+		this.t += dt;
+		var fade_param = level_manager.getCurrentLevelData().fade_param;
+		if(fade_param) {
+			var new_alpha = Math.abs(Math.cos(Math.sin(this.t * fade_param) + this.t * fade_param));
+			this.alpha = new_alpha;
+		}
+		else {
+			this.alpha = 1;
+		}
+
 		if(!this.is_on_ground) {
 			this.speed_y += NS.Globals.gravity * dt;
 		}
@@ -174,10 +188,10 @@
 		}
 		
 		if(this.x < W / 4) {
-			this.alpha -= dt;
-			if(this.alpha < 0) {
+			// this.alpha -= dt;
+			// if(this.alpha < 0) {
 				removeChild(this);
-			}
+			// }
 		}
 
 		this.x += this.speed_x * dt;

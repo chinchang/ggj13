@@ -29,7 +29,7 @@
 		player.is_under_user_control = true;
 		addChild(player);
 
-		addChild(new NS.BlackCurtain());
+		// addChild(new NS.BlackCurtain());
 		
 		// addChild(emitter);
 
@@ -37,7 +37,7 @@
 		addChild(level_manager);
 		
 		PAUSE = false;
-		debug = true;
+		// debug = true;
 
 		level_manager.startLevel(1);
 	};
