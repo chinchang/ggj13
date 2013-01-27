@@ -22,7 +22,7 @@
 			name: 'Getting started',
 			obstacle_interval_ms: 1500,
 			duration_sec: 10,
-			available_times_to_collide: [2, 3, 4],
+			available_times_to_collide: [2],
 			fade_param: 0
 		},
 		4: {
