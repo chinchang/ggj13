@@ -31,10 +31,23 @@
 			}
 		});
 	}
+
+
+	function initSounds() {
+		NS.Globals.sounds.hit = document.getElementById('hit');
+		NS.Globals.sounds.note1 = document.getElementById('note1');
+		NS.Globals.sounds.note2 = document.getElementById('note2');
+		NS.Globals.sounds.note3 = document.getElementById('note3');
+		NS.Globals.sounds.note4 = document.getElementById('note4');
+		// NS.sounds.shoot = document.getElementById('shoot');
+	}
+
 	
 	NS.init = function () {
 		log('game initialized');
+		initSounds();
 		initListeners();
+
 		NS.Globals.player_x = ~~(W / 4);
 		NS.Globals.ground_height = ~~(H * 0.5);
 
@@ -102,10 +115,7 @@
 
 	NS.updateHealth = function (amount) {
 		health += amount;
-		
-		var hit_snd = document.getElementById("audHit");
-		hit_snd.volume = 0.2;
-		hit_snd.play();
+		NS.Globals.sounds['hit'].play();
 
 		$('.hud--life')
 			.removeClass('l1')
@@ -119,6 +129,7 @@
 	NS.takeCollectible = function () {
 		collectibles++;
 		$('.js-collectibles').text(collectibles + '');
+		NS.Globals.sounds['note' + getRandomFromList([1, 2, 3, 4])].play();
 	};
 	
 	NS.createExplosion = function (x, y, level, color) {
