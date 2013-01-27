@@ -117,7 +117,7 @@ var level_manager = (function() {
 	};
 
 	function getCollectibleProbability () {
-		if(_current_level <= 1) return 0.06;
+		if(_current_level <= 1) return 0.02;
 		else if(_current_level <= 2) return 0.03;
 		else if(_current_level <= 3) return 0.04;
 		else if(_current_level <= 10) return 0.05;
