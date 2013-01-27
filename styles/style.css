@@ -16,8 +16,8 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: Verdana, Arial;
-	background-color: #111;
-	color: #777;
+	background-color: hsl(0, 0%, 80%);
+	color: #666;
 	overflow: hidden;
 	text-align: center;
 }
@@ -28,6 +28,7 @@ h1, h2, h3, h4 {
 
 body.hit {
 	-webkit-transition: 1s ease;
+	-moz-transition: 1s ease;
 }
 
 a {
@@ -36,16 +37,16 @@ a {
 }
 
 button {
-	background: #F4F4F4;
+	background: hsl(2, 61%, 57%);
 	border: none;
-	color: #444;
+	color: white;
 	padding: 10px 20px;
 	-webkit-transition: 0.25s ease;
+	-moz-transition: 0.25s ease;
 }
 
 button:hover {
-	background: #AAA;
-	color: white;
+	background: hsl(2, 61%, 45%);
 }
 
 .title {
@@ -56,6 +57,8 @@ button:hover {
 
 canvas {
 	background-color: #9CC5C9;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 
 .canvas-container {
@@ -63,25 +66,25 @@ canvas {
 }
 
 .gameover-msg {
-	display: none;
+	height: 0;
+	-moz-transition: 0.5s ease-in;
+	-webkit-transition: 0.5s ease-in;
+	overflow: hidden;
 }
 
 .gameover .gameover-msg {
-	display: inline-block;
+	height: 100px;
 }
 
 .screen.game {
-	margin-top: 20px;
-	-webkit-transition: 0.5 ease;
 }
 
 .gameover .screen.game {
-	opacity: 0;
+	/*opacity: 0;*/
 }
 
 .hud {
-	color: #666;
-	padding: 16px;
+	padding: 10px;
 	font-size: 30px;
 	font-weight: bold;
 	display: inline-block;
@@ -127,6 +130,8 @@ canvas {
 	background-color: #D5544F;
 	-webkit-transform: rotate(-35deg);
 	-moz-transform: rotate(-35deg);
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 
 /* eyes */
@@ -171,6 +176,8 @@ canvas {
 	color: #333;
 	left: 30%;
 	top: 9999px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
 }
 
 .callout:after {
@@ -181,4 +188,10 @@ canvas {
 	display: block;
 	border: 10px solid transparent;
 	border-right-color: white;
+}
+
+.ggj-logo {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }

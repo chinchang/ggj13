@@ -85,7 +85,7 @@ var level_manager = (function() {
 		_level_timer += dt;
 		_global_timer += dt;
 
-		$('#js-score').text(~~(_global_timer * 100) + '');
+		$('.js-score').text(~~(_global_timer * 100) + '');
 		
 		_obstacle_timer += dt;
 		_level_complete_check_timer += dt;

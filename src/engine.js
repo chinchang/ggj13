@@ -187,7 +187,6 @@ function gameLoop(){
 }
 function onKeyUp(e) {
 	keys[e.which] = false;
-	// log(e.which);
 }
 
 function onKeyDown(e) {
@@ -195,17 +194,11 @@ function onKeyDown(e) {
 }
 
 function onKeyPress(e) {
+	log(e.which)
 	// toggle debug mode using d/D key
 	if({68:1,100:1}[e.which]){
 		debug ^= 1;
 	}
-	else if(PAUSE && {88:1,120:1}[e.which]){
-	}
-	// else if({32:1}[e.which]){
-	// 	for (var i = 10; i >= 0; i--) {
-	// 		addChild(new Asteroid);
-	// 	}
-	// }
 }
 
 /**

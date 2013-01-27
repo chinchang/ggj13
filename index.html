@@ -6,22 +6,27 @@
 
 <body>
 
-<h1 class="title">BEAT SIGHT</h1>
+<h1 class="title">BEAT SIGHT</h1> 
 
 <!--
 GAME SCREEN
 -->
 <div class="gameover-msg">
-	<h2>Game Over</h2>
-	<button class="js-play-again-button  play-again-button">Play Again</button>
+	<h2>Game Over!</h2> 
+	You scored: <span class="js-score"></span>&nbsp;
+	<button class="js-play-again-button  play-again-button">Play Again (ENTER)</button>
 	
 </div>
 
 <div class="screen game">
 	<div class="hud  hud--left">
-		<img src="images/trophy.png" alt="">
-		<span class="js-highscore">0</span>
+		<ul class="hud--life">
+			<li class="hud--life__item">&hearts;</li>
+			<li class="hud--life__item">&hearts;</li>
+			<li class="hud--life__item">&hearts;</li>
+		</ul>
 	</div>
+
 	<div class="hud  hud--right">
 		<span class="js-collectibles">0</span>
 		<img src="images/coins.png" alt="">
@@ -34,23 +39,21 @@ GAME SCREEN
 	</div>
 
 	<div class="hud  hud--left">
-		<ul class="hud--life">
-			<li class="hud--life__item">&hearts;</li>
-			<li class="hud--life__item">&hearts;</li>
-			<li class="hud--life__item">&hearts;</li>
-		</ul>
+		<img src="images/trophy.png" alt="">
+		<span class="js-highscore">0</span>
 	</div>
 
 	<div class="hud  hud--right">
-		<span id="js-score">0</span>
+		<span class="js-score">0</span>
 		<img src="images/clock.png" alt="">
 	</div>
 
 	<div class="clear"></div>
 
-	<span>You can CLICK or PRESS UP KEY to jump</span>
+	<span>CLICK or PRESS UP/W/SPACE to jump</span>
 
 </div>
+<img class="ggj-logo" src="images/ggj-logo.png" height="100" alt="">
 
 <audio src="Hit_Hurt.wav" id="audHit"></audio>
 <audio src="GGJ13_Theme.wav" id="audHeart" loop></audio>

@@ -18,6 +18,18 @@
 				player.jump();
 			}
 		};
+
+		// Keyup listeners
+		document.addEventListener('keyup', function(e) {
+			// Escape key
+			if(e.which === 27) {
+				PAUSE ^= 1;
+			}
+			else if(e.which == 13) {
+				NS.startGame();
+				e.preventDefault();
+			}
+		});
 	}
 	
 	NS.init = function () {

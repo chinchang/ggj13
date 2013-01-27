@@ -40,7 +40,7 @@
 						setTimeout(function () {
 							$('body')
 								.addClass('hit')
-								.css('background-color', '#111');
+								.css('background-color', 'hsl(0, 0%, 80%)');
 						}, 10);
 
 						$('.player').css({
@@ -56,8 +56,6 @@
 							});
 							PAUSE = false;
 						}, 800);
-
-
 					}
 					else if(obj.type === 'collectible') {
 						NS.takeCollectible();
@@ -66,6 +64,7 @@
 					removeChild(obj);
 				}
 			}
+			obj = null;
 		};
 
 		this.jump = function () {
@@ -102,7 +101,7 @@
 		}
 
 		// jump
-		if(keys[38] && this.is_on_ground) {
+		if((keys[38] || keys[32] || keys[87] || keys[119]) && this.is_on_ground) {
 			this.jump();
 		}
 
