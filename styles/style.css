@@ -18,7 +18,7 @@ body {
 	font-family: Verdana, Arial;
 	background-color: hsl(0, 0%, 80%);
 	color: #666;
-	overflow: hidden;
+	overflow-x: hidden;
 	text-align: center;
 }
 
@@ -125,7 +125,7 @@ canvas {
 	width: 100px;
 	height: 100px;
 	left: 20%;
-	top: 9999px;
+	top: -9999px;
 	background-color: #D5544F;
 	-webkit-transform: rotate(-35deg);
 	-moz-transform: rotate(-35deg);
@@ -174,7 +174,7 @@ canvas {
 	border-radius: 8px;
 	color: #333;
 	left: 30%;
-	top: 9999px;
+	top: -9999px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 }

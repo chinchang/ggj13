@@ -52,7 +52,7 @@
 						PAUSE = true;
 						setTimeout(function () {
 							$('.player, .callout').css({
-								'top': '9999px'
+								'top': '-9999px'
 							});
 							PAUSE = false;
 						}, 800);
