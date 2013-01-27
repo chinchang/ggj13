@@ -58,7 +58,7 @@
 		$('.js-highscore').html(highscore);
 		$('.js-collectibles').html(collectibles);
 
-		level_manager.startLevel(1);
+		NS.startGame();
 	};
 
 	NS.onLevelComplete = function () {
@@ -85,22 +85,28 @@
 			removeChild(entities[i]);
 		}
 		$('body').addClass('gameover');
+		NS.Globals.state = 'STOPPED';
 	};
 
 	NS.startGame = function (amount) {
+		log(NS.Globals.state);
+		if(NS.Globals.state == 'PLAYING') return;
+
 		$('body').removeClass('gameover');
 		level_manager.startLevel(1);
 		health = 3;
 		score = 0;
 		$('.hud--life').removeClass('l1 l2');
+		NS.Globals.state = 'PLAYING';
 	};
 
 	NS.updateHealth = function (amount) {
 		health += amount;
 		
-		document.getElementById("audHit").src = 'Hit_Hurt.wav';
-		document.getElementById("audHit").volume = 1;
-		document.getElementById("audHit").play();
+		var hit_snd = document.getElementById("audHit");
+		hit_snd.volume = 0.2;
+		hit_snd.play();
+
 		$('.hud--life')
 			.removeClass('l1')
 			.removeClass('l2')
