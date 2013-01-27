@@ -1,6 +1,4 @@
-ggj-gurgaon
+BEAT SIGHT
 ===========
+An HTML5 game made for Global Game Jam 2012 (gurgaon)
 
-Repository of code for global game jam
-
-The structure and other information will be updated soon.
