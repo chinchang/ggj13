@@ -148,13 +148,6 @@
 			data.highscore = score;
 		}
 
-		// // save level highscore
-		// if(!data.level_stats[current_level]) {
-		// 	data.level_stats[current_level] = $.extend({}, NS.dummy_save_data.level_stats['1']);
-		// }
-		// if(level_score > data.level_stats[current_level].highscore) {
-		// 	data.level_stats[current_level].highscore = level_score;
-		// }
 		NS.SaveManager.saveData(data);
 	};
 
